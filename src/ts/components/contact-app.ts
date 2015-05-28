@@ -1,5 +1,4 @@
-import {Component, View, bootstrap} from 'angular2/angular2';
-import {Router, RouteConfig, RouteParams, RouterLink, RouterOutlet, routerInjectables} from 'angular2/router';
+import {Component, View} from 'angular2/angular2';
 
 import {ContactList} from './contacts-list';
 import {ContactDetails} from './contact-details';
@@ -12,7 +11,7 @@ import {AppEmitters} from '../services/app-emitters';
 })
 @View({
     templateUrl: './templates/contact-app.html',
-    directives: [ContactList, ContactDetails, ContactSearch, RouterOutlet]
+    directives: [ContactList, ContactDetails, ContactSearch]
 })
 export class ContactApp {
     store:ContactStore;

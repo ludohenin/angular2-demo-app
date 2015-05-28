@@ -1,3 +1,4 @@
 import {Dispatcher} from 'lib/flux';
 
-export var appDispatcher = new Dispatcher();
+// TODO: to improve.
+export let appDispatcher = new Dispatcher();

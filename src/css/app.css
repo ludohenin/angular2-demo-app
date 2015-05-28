@@ -1,16 +1,13 @@
 @import url(//fonts.googleapis.com/css?family=Raleway:100,200,400,700);
-@import url(//fonts.googleapis.com/css?family=Open+Sans:100,400,700);
 
 body, html {
     padding: 0;
     margin: 0;
     height: 100%;
-    font-family: "Open Sans", sans-serif;
-    font-weight: 100;
+    font-family: "Raleway", sans-serif;
+    font-weight: 400;
 }
-body {
-    margin-top: 60px;
-}
+body { margin-top: 60px; }
 
 .app-loading {
     display: table;
@@ -29,6 +26,7 @@ body {
     text-shadow: 1px 4px 6px #fff, 0 0 0 #000, 1px 4px 6px #fff;
 }
 
+.contact-list { margin-top: 15px; }
 .contact-list-item {
     line-height: 30px;
     cursor: pointer;
@@ -41,4 +39,10 @@ body {
 .contact-search-input {
     width: 100%;
     padding: 5px 10px;
+}
+
+.contact-detail-panel { font-size: 25px; }
+.contact-detail-panel.contact-no-contact {
+    color: #C2C2C2;
+    text-align: center;
 }

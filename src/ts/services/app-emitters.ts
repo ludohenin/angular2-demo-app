@@ -1,6 +1,6 @@
 import {EventEmitter} from 'angular2/angular2';
 
-var registry = {};
+let registry = {};
 
 function get(name: string):EventEmitter {
     if (!registry[name]) registry[name] = new EventEmitter();
