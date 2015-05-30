@@ -49,7 +49,7 @@ gulp.task('serve', ['build:js', 'build:templates', 'build:css', 'build:index'], 
     gulp.watch(PATH.src.index, ['build:index']);
 
     var params = {
-        port: 8080,
+        port: 5555,
         host: "localhost",
         root: "./dist",
         open: false
