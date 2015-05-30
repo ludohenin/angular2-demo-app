@@ -7,10 +7,10 @@ import {ContactApp} from './components/contact-app';
 import {About} from './components/about';
 
 @Component({
-    selector: 'app',
+    selector: 'app'
 })
 @RouteConfig([
-    { path: '/', component: Home, as: 'home' },
+    { path: '/', component: ContactApp, as: 'home' },
     { path: '/contact', component: ContactApp, as: 'contact-app' },
     { path: '/about', component: About, as: 'about' }
 ])

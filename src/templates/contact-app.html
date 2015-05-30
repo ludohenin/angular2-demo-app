@@ -1,10 +1,12 @@
 <section class="row">
     <div class="col-sm-4">
-        <contact-search></contact-search>
-        <contact-list [contacts]="contacts"></contact-list>
+        <contact-search (filter)="list.onFilterList($event)"></contact-search>
+        <contact-list [contacts]="contacts"
+                      (selected)="details.onSelectContact($event)"
+                      #list></contact-list>
     </div>
 
     <div class="col-sm-8">
-        <contact-details [contact]="selectedContact"></contact-details>
+        <contact-details #details></contact-details>
     </div>
 </section>

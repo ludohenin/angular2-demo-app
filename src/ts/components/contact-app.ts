@@ -3,11 +3,12 @@ import {Component, View} from 'angular2/angular2';
 import {ContactList} from './contacts-list';
 import {ContactDetails} from './contact-details';
 import {ContactSearch} from './contact-search';
+import {ContactForm} from './contact-form';
+
 import {contactStore, ContactStore} from '../services/contacts-store';
-import {AppEmitters} from '../services/app-emitters';
 
 @Component({
-    selector: 'contact-app',
+    selector: 'contact-app'
 })
 @View({
     templateUrl: './templates/contact-app.html',
@@ -21,12 +22,6 @@ export class ContactApp {
     constructor() {
         this.store = contactStore;
         this.store.getList()
-            .then(data => this.contacts = data);
-
-        AppEmitters.subscribe('contactSelected'
-            , value => this.selectedContact = value);
-
-        AppEmitters.subscribe('contactSearch'
-            , value => this.contacts = this.store.search(value));
+            .then(data => this.contacts = data)
     }
 }

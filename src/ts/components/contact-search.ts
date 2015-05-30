@@ -1,25 +1,19 @@
 import {Component, View, EventEmitter} from 'angular2/angular2';
 
-import {AppEmitters} from '../services/app-emitters';
+import {contactStore} from '../services/contacts-store';
 
 @Component({
     selector: 'contact-search',
-    properties: {
-        'contact': 'contact',
-        'store': 'store'
-    }
+    events: ['filter']
 })
 @View({
     templateUrl: './templates/contact-search.html'
 })
 export class ContactSearch {
-    emitter:EventEmitter;
-
-    constructor() {
-        this.emitter = AppEmitters.create('contactSearch');
-    }
+    filter = new EventEmitter();
 
     search(event, value) {
-        this.emitter.next(value);
+        let result = contactStore.search(value);
+        this.filter.next(result);
     }
 }

@@ -32,7 +32,6 @@ export class ContactStore {
 
         this.contacts.forEach(contact => {
             Object.keys(contact).forEach(key => {
-                // TODO: improve test.
                 if (contact[key].toLowerCase().indexOf(query) !== -1 && result.indexOf(contact) === -1) {
                     result.push(contact);
                 }
