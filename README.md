@@ -13,3 +13,7 @@ npm install -g gulp
 gulp build
 gulp serve
 ```
+
+# Licence
+
+MIT
