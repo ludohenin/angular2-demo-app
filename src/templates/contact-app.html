@@ -4,9 +4,11 @@
         <contact-list [contacts]="contacts"
                       (selected)="details.onSelectContact($event)"
                       #list></contact-list>
+        <!-- <router-outlet name="panel-left"></router-outlet> -->
     </div>
 
     <div class="col-sm-8">
         <contact-details #details></contact-details>
+        <!-- <router-outlet name="panel-right"></router-outlet> -->
     </div>
 </section>

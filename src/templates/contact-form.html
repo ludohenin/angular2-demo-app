@@ -1,1 +1,19 @@
 <h3>New Contact</h3>
+
+<form class="form-horizontal">
+    <div [control-group]="contactForm">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Name</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" control="name">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-3">
+            <button class="btn btn-primary" disabled="contactForm.dirty && contactForm.valid">Save</button>
+            <button class="btn btn-link" disabled="contactForm.dirty">Cancel</button>
+        </div>
+    </div>
+</form>

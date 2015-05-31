@@ -4,6 +4,8 @@ import {RouteConfig, RouterLink, RouterOutlet, routerInjectables} from 'angular2
 
 import {Home} from './components/home';
 import {ContactApp} from './components/contact-app';
+// TODO: move to contact-app when child route bug is fixed.
+import {ContactForm} from './components/contact-form';
 import {About} from './components/about';
 
 @Component({
@@ -11,7 +13,7 @@ import {About} from './components/about';
 })
 @RouteConfig([
     { path: '/', component: ContactApp, as: 'home' },
-    { path: '/contact', component: ContactApp, as: 'contact-app' },
+    { path: '/add', component: ContactForm, as: 'add' },
     { path: '/about', component: About, as: 'about' }
 ])
 @View({
