@@ -12,8 +12,8 @@
 
     <div class="form-group">
         <div class="col-sm-offset-3">
-            <button class="btn btn-primary" disabled="contactForm.dirty && contactForm.valid">Save</button>
-            <button class="btn btn-link" disabled="contactForm.dirty">Cancel</button>
+            <button class="btn btn-primary" [disabled]="!contactForm.dirty || !contactForm.valid">Save</button>
+            <button class="btn btn-link" [disabled]="!contactForm.dirty">Cancel</button>
         </div>
     </div>
 </form>
