@@ -1,6 +1,6 @@
 # angular2-demo-app
 
-**Note** This demo is still under very active development.
+**Note** This demo is still very much a work in progress.
 
 # How to start
 
