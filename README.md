@@ -1,5 +1,7 @@
 # angular2-demo-app
 
+This project in made using [angular2-seed](https://github.com/mgechev/angular2-seed)
+
 **Note** This demo is still very much a work in progress.
 
 # How to start
@@ -10,8 +12,8 @@ cd angular2-demo-app
 npm install
 # If you don't have gulp already installed
 npm install -g gulp
-gulp build
-gulp serve
+gulp build.lib.dev
+gulp serve.dev
 ```
 
 # Licence

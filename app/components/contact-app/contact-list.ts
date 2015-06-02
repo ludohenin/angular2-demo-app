@@ -1,7 +1,5 @@
 import {Component, View, NgFor, EventEmitter} from 'angular2/angular2';
 
-import {contactStore, ContactStore} from '../services/contacts-store';
-
 @Component({
     selector: 'contact-list',
     properties: {
@@ -10,7 +8,7 @@ import {contactStore, ContactStore} from '../services/contacts-store';
     events: ['selected']
 })
 @View({
-    templateUrl: './templates/contact-list.html',
+    templateUrl: './components/contact-app/contact-list.html',
     directives: [NgFor]
 })
 export class ContactList {

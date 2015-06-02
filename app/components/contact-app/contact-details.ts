@@ -4,7 +4,7 @@ import {Component, View, EventEmitter, NgIf} from 'angular2/angular2';
     selector: 'contact-details'
 })
 @View({
-    templateUrl: './templates/contact-details.html',
+    templateUrl: './components/contact-app/contact-details.html',
     directives: [NgIf]
 })
 export class ContactDetails {

@@ -5,131 +5,126 @@ var del = require('del');
 var Builder = require('systemjs-builder');
 var ts = require('gulp-typescript');
 var plumber = require('gulp-plumber');
-var runSequence = require('gulp-run-sequence');
-var liveServer = require('live-server');
-var sourceMaps = require('gulp-sourcemaps');
+var sourcemaps = require('gulp-sourcemaps');
+var runSequence = require('run-sequence');
+
+var http = require('http');
+var connect = require('connect');
+var serveStatic = require('serve-static');
+var openResource = require('open');
+var join = require('path').join;
+
+// --------------
+// Configuration.
 
 var PATH = {
-    src: {
-        index: './src/index.html',
-        ts: ['./src/ts/**', './typings/**'],
-        templates: './src/templates/**',
-        css: './src/css/**',
-        flux: './src/flux.js',
-        lib: [
-            './node_modules/angular2/node_modules/traceur/bin/traceur-runtime.js',
-            './node_modules/angular2/node_modules/zone.js/dist/zone.js',
-            './node_modules/es6-module-loader/dist/es6-module-loader-sans-promises.js',
-            './node_modules/es6-module-loader/dist/es6-module-loader-sans-promises.js.map',
-            './node_modules/reflect-metadata/Reflect.js',
-            './node_modules/reflect-metadata/Reflect.js.map',
-            './node_modules/systemjs/dist/system.js'
-        ],
+  dest: {
+    all: 'dist',
+    dev: {
+      all: 'dist/dev',
+      lib: 'dist/dev/lib'
     },
-    dest: {
-        index: './dist',
-        ts: './dist/js',
-        templates: './dist/templates',
-        css: './dist/css',
-        flux: './dist/lib',
-        lib: './dist/lib',
+    prod: {
+      all: 'dist/prod',
+      lib: 'dist/prod/lib'
     }
+  },
+  src: {
+    lib: [
+      './node_modules/angular2/node_modules/traceur/bin/traceur-runtime.js',
+      './node_modules/angular2/node_modules/zone.js/dist/zone.js',
+      './node_modules/es6-module-loader/dist/es6-module-loader-sans-promises.js',
+      './node_modules/es6-module-loader/dist/es6-module-loader-sans-promises.js.map',
+      './node_modules/reflect-metadata/Reflect.js',
+      './node_modules/reflect-metadata/Reflect.js.map',
+      './node_modules/systemjs/dist/system.js',
+      './node_modules/systemjs/dist/system.js.map'
+    ]
+  }
 };
 
-// ---------------------------- Main gulp tasks --------------------------------
-
-gulp.task('build', function (done) {
-    runSequence('clean', ['build:lib', 'build:js', 'build:templates', 'build:css', 'build:index'], done);
-});
-
-gulp.task('serve', ['build:js', 'build:templates', 'build:css', 'build:index'], function () {
-    gulp.watch(PATH.src.ts, ['build:js']);
-    gulp.watch(PATH.src.templates, ['build:templates']);
-    gulp.watch(PATH.src.css, ['build:css']);
-    gulp.watch(PATH.src.index, ['build:index']);
-
-    var params = {
-        port: 5555,
-        host: "localhost",
-        root: "./dist",
-        open: false
-    };
-    liveServer.start(params);
-});
-
-// -----------------------------------------------------------------------------
-
-gulp.task('clean:lib', function (done) {
-    del([PATH.dest.lib], done);
-});
-
-gulp.task('clean:js', function (done) {
-    del([PATH.dest.ts], done);
-});
-
-gulp.task('clean:templates', function (done) {
-    del([PATH.dest.templates], done);
-});
-
-gulp.task('clean:css', function (done) {
-    del([PATH.dest.css], done);
-});
-
-gulp.task('clean', ['clean:lib', 'clean:js', 'clean:templates', 'clean:css']);
-
-gulp.task('build:angular2', function () {
-    var builder = new Builder({
-        paths: {
-            'angular2/*': 'node_modules/angular2/es6/prod/*.es6',
-            rx: 'node_modules/angular2/node_modules/rx/dist/rx.js'
-        },
-        meta: {
-            rx: {
-                format: 'cjs'
-            }
-        }
-    });
-    builder.build('angular2/router', PATH.dest.lib + '/router.js', {});
-    return builder.build('angular2/angular2', PATH.dest.lib + '/angular2.js', {});
-});
-
-// TODO: improve build.
-gulp.task('build:flux', function() {
-    return gulp.src(PATH.src.flux)
-        .pipe(gulp.dest(PATH.dest.flux));
-});
-
-gulp.task('build:lib', ['build:flux', 'build:angular2'], function () {
-    gulp.src(PATH.src.lib)
-        .pipe(gulp.dest(PATH.dest.lib));
+var builder = new Builder({
+  paths: {
+    'angular2/*': 'node_modules/angular2/es6/prod/*.es6',
+    rx: 'node_modules/angular2/node_modules/rx/dist/rx.js'
+  },
+  meta: {
+    rx: {
+      format: 'cjs'
+    }
+  }
 });
 
 var tsProject = ts.createProject('tsconfig.json', {
-    typescript: require("typescript")
+  typescript: require('typescript')
 });
 
-gulp.task('build:js', ['clean:js'], function () {
-    var result = gulp.src(PATH.src.ts)
-        .pipe(plumber())
-        .pipe(sourceMaps.init())
-        .pipe(ts(tsProject));
+// --------------
+// Clean.
 
-    return result.js
-        .pipe(sourceMaps.write())
-        .pipe(gulp.dest(PATH.dest.ts));
+gulp.task('clean', function (done) {
+  del(PATH.dest.all, done);
 });
 
-gulp.task('build:templates', ['clean:templates'], function () {
-    gulp.src(PATH.src.templates)
-        .pipe(gulp.dest(PATH.dest.templates));
+gulp.task('clean.dev', function (done) {
+  del(PATH.dest.dev.all, done);
 });
 
-gulp.task('build:css', ['clean:css'], function () {
-    gulp.src(PATH.src.css)
-        .pipe(gulp.dest(PATH.dest.css));
+gulp.task('clean.app.dev', function (done) {
+  // TODO: rework this part.
+  del([join(PATH.dest.dev.all, '**/*'), '!' +
+       PATH.dest.dev.lib, '!' + join(PATH.dest.dev.lib, '*')], done);
 });
 
-gulp.task('build:index', function () {
-    gulp.src(PATH.src.index)
-        .pipe(gulp.dest(PATH.dest.index));
+// --------------
+// Build dev.
+
+gulp.task('build.ng2.dev', function () {
+  builder.build('angular2/router', join(PATH.dest.dev.lib, 'router.js'), {});
+  return builder.build('angular2/angular2', join(PATH.dest.dev.lib, 'angular2.js'), {});
+});
+
+gulp.task('build.lib.dev', ['build.ng2.dev'], function () {
+  gulp.src(PATH.src.lib)
+    .pipe(gulp.dest(PATH.dest.dev.lib));
+});
+
+gulp.task('build.js.dev', ['clean.app.dev'], function () {
+  var result = gulp.src('./app/**/*ts')
+    .pipe(plumber())
+    .pipe(sourcemaps.init())
+    .pipe(ts(tsProject));
+
+  return result.js
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(PATH.dest.dev.all));
+});
+
+gulp.task('build.app.dev', ['build.js.dev'], function () {
+  return gulp.src(['./app/**/*.html', './app/**/*.css'])
+    .pipe(gulp.dest(PATH.dest.dev.all));
+});
+
+gulp.task('build.dev', function (done) {
+  runSequence('clean.dev', ['build.lib.dev', 'build.app.dev'], done);
+});
+
+// --------------
+// Build prod.
+
+// To be implemented.
+
+// --------------
+// Serve dev.
+
+gulp.task('serve.dev', ['build.app.dev'], function () {
+  var port = 5555;
+  var app;
+
+  gulp.watch('./app/**', ['build.app.dev']);
+
+  app = connect().use(serveStatic(join(__dirname, PATH.dest.dev.all)));
+  http.createServer(app).listen(port, function () {
+    openResource('http://localhost:' + port);
+  });
 });

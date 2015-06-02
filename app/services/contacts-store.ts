@@ -1,5 +1,3 @@
-import {appDispatcher} from '../services/app-dispatcher';
-
 var data = [{ givenName: 'John' }, { givenName: 'Smith' }];
 
 export class ContactStore {
@@ -7,16 +5,6 @@ export class ContactStore {
 
     constructor() {
         this.contacts = [];
-
-        appDispatcher.register((payload) => {
-            switch (payload.action) {
-                case 'ADD_CONTACT':
-                    this.add(payload.data);
-                    break;
-
-                default : return;
-            }
-        });
     }
 
     getList():Promise {
