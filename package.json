@@ -1,12 +1,8 @@
 {
   "name": "angular2-demo-app",
   "version": "0.0.0",
-  "description": "A simple Angular 2 demo application",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/ludohenin/angular2-demo-app.git"
-  },
-  "main": "index.js",
+  "description": "Simple Angular 2 demo application",
+  "repository": "https://github.com/ludohenin/angular2-demo-app",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
