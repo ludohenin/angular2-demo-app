@@ -1,6 +1,6 @@
 # angular2-demo-app
 
-This project in made using [angular2-seed](https://github.com/mgechev/angular2-seed)
+This project is based on [angular2-seed](https://github.com/mgechev/angular2-seed)
 
 **Note** This demo is still very much a work in progress.
 
