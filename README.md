@@ -12,8 +12,10 @@ cd angular2-demo-app
 npm install
 # If you don't have gulp already installed
 npm install -g gulp
-gulp build.lib.dev
+# dev
 gulp serve.dev
+# prod
+gulp serve.prod
 ```
 
 # Licence
