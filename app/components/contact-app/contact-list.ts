@@ -2,9 +2,7 @@ import {Component, View, NgFor, EventEmitter} from 'angular2/angular2';
 
 @Component({
     selector: 'contact-list',
-    properties: {
-        'contacts': 'contacts'
-    },
+    properties: ['contacts'],
     events: ['selected']
 })
 @View({

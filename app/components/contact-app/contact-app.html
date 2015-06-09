@@ -1,5 +1,5 @@
 <section class="row">
-    <div class="col-sm-4">
+    <div class="panel-left">
         <contact-search (filter)="list.onFilterList($event)"></contact-search>
         <contact-list [contacts]="contacts"
                       (selected)="details.onSelectContact($event)"
@@ -7,8 +7,10 @@
         <!-- <router-outlet name="panel-left"></router-outlet> -->
     </div>
 
-    <div class="col-sm-8">
-        <contact-details #details></contact-details>
-        <!-- <router-outlet name="panel-right"></router-outlet> -->
+    <div class="panel-right">
+        <div class="col-sm-12">
+            <contact-details #details></contact-details>
+            <!-- <router-outlet name="panel-right"></router-outlet> -->
+        </div>
     </div>
 </section>

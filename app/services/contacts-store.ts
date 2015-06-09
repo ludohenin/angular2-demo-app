@@ -7,7 +7,7 @@ export class ContactStore {
         this.contacts = [];
     }
 
-    getList():Promise {
+    getList():Promise<any> {
         this.contacts = data;
         return new Promise((resolve, reject) => resolve(this.contacts))
     }

@@ -26,6 +26,15 @@ body { margin-top: 60px; }
     text-shadow: 1px 4px 6px #fff, 0 0 0 #000, 1px 4px 6px #fff;
 }
 
+.panel-left {
+    width: 250px;
+    position: fixed;
+    padding: 5px;
+}
+.panel-left + .panel-right {
+    margin-left: 250px;
+}
+
 .contact-list { margin-top: 15px; }
 .contact-list-item {
     line-height: 30px;
