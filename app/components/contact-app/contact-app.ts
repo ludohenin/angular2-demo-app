@@ -29,7 +29,7 @@ import {contactStore, ContactStore} from '../../services/contacts-store';
     }
 ])
 @View({
-    templateUrl: './components/contact-app/contact-app.html',
+    templateUrl: './components/contact-app/contact-app.html?v=<%= VERSION %>',
     directives: [RouterOutlet, ContactList, ContactDetails, ContactSearch]
 })
 export class ContactApp {

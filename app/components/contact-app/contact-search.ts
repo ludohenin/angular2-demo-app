@@ -7,7 +7,7 @@ import {contactStore} from '../../services/contacts-store';
     events: ['filter']
 })
 @View({
-    templateUrl: './components/contact-app/contact-search.html'
+    templateUrl: './components/contact-app/contact-search.html?v=<%= VERSION %>'
 })
 export class ContactSearch {
     filter = new EventEmitter();

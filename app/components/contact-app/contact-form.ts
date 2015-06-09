@@ -6,7 +6,7 @@ import {formDirectives, FormBuilder, FormGroup, Validators} from 'angular2/forms
     appInjector: [FormBuilder]
 })
 @View({
-    templateUrl: './components/contact-app/contact-form.html',
+    templateUrl: './components/contact-app/contact-form.html?v=<%= VERSION %>',
     directives: [formDirectives]
 })
 export class ContactForm {

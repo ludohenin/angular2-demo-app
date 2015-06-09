@@ -6,7 +6,7 @@ import {Component, View, NgFor, EventEmitter} from 'angular2/angular2';
     events: ['selected']
 })
 @View({
-    templateUrl: './components/contact-app/contact-list.html',
+    templateUrl: './components/contact-app/contact-list.html?v=<%= VERSION %>',
     directives: [NgFor]
 })
 export class ContactList {
