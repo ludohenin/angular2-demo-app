@@ -146,8 +146,8 @@ gulp.task('build.js.dev', function () {
     .pipe(tsc(tsProject));
 
   return result.js
-    .pipe(sourcemaps.write())
     .pipe(template({ VERSION: getVersion() }))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest(PATH.dest.dev.all));
 });
 
@@ -198,10 +198,10 @@ gulp.task('build.lib.prod', ['build.ng2.prod'], function () {
 gulp.task('build.js.tmp', function () {
   var result = gulp.src(['./app/**/*ts', '!./app/init.ts'])
     .pipe(plumber())
-    .pipe(sourcemaps.init())
     .pipe(tsc(tsProject));
 
   return result.js
+    .pipe(template({ VERSION: getVersion() }))
     .pipe(gulp.dest('tmp'));
 });
 
@@ -233,7 +233,7 @@ gulp.task('build.assets.prod', ['build.js.prod'], function () {
     .pipe(filterHTML.restore())
     .pipe(filterCSS)
     .pipe(sourcemaps.init())
-    .pipe(concat('app.css'))
+    .pipe(concat(join(PATH.dest.prod.css, 'app.css')))
     .pipe(minifyCSS())
     .pipe(sourcemaps.write())
     .pipe(filterCSS.restore())
@@ -279,7 +279,7 @@ gulp.task('bump.reset', function() {
 // --------------
 // Serve dev.
 
-gulp.task('serve.dev', ['build.dev'], function () {
+gulp.task('serve.dev', ['build.app.dev'], function () {
   var app;
 
   gulp.watch('./app/**', ['build.app.dev']);
@@ -293,7 +293,7 @@ gulp.task('serve.dev', ['build.dev'], function () {
 // --------------
 // Serve prod.
 
-gulp.task('serve.prod', ['build.prod'], function () {
+gulp.task('serve.prod', ['build.app.prod'], function () {
   var app;
 
   gulp.watch('./app/**', ['build.app.prod']);

@@ -1,16 +1,16 @@
 <section class="row">
     <div class="panel-left">
-        <contact-search (filter)="list.onFilterList($event)"></contact-search>
+        <search (filter)="list.onFilterList($event)"></search>
         <contact-list [contacts]="contacts"
                       (selected)="details.onSelectContact($event)"
                       #list></contact-list>
-        <!-- <router-outlet name="panel-left"></router-outlet> -->
+         <!--<router-outlet name="panel-left"></router-outlet>-->
     </div>
 
     <div class="panel-right">
         <div class="col-sm-12">
             <contact-details #details></contact-details>
-            <!-- <router-outlet name="panel-right"></router-outlet> -->
+             <!--<router-outlet name="panel-right"></router-outlet>-->
         </div>
     </div>
 </section>

@@ -1,5 +1,32 @@
 <div class="contact-detail-panel" *ng-if="contact">
-    selected contact: <strong>{{ contact.givenName }}</strong>
+    selected contact: <strong>{{ contact.fullName }}</strong>
+
+    <table class="table table-bordered">
+        <tr>
+            <td>fullName</td>
+            <td>{{ contact.fullName }}</td>
+        </tr>
+        <tr>
+            <td>firstName</td>
+            <td>{{ contact.firstName }}</td>
+        </tr>
+        <tr>
+            <td>lastName</td>
+            <td>{{ contact.lastName }}</td>
+        </tr>
+        <tr>
+            <td>phone</td>
+            <td>{{ contact.phone }}</td>
+        </tr>
+        <tr>
+            <td>email</td>
+            <td>{{ contact.email }}</td>
+        </tr>
+        <tr>
+            <td>address</td>
+            <td>{{ contact.address }}</td>
+        </tr>
+    </table>
 </div>
 
 <div class="contact-detail-panel contact-no-contact" *ng-if="!contact">

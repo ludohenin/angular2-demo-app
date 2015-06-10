@@ -21,9 +21,8 @@ body { margin-top: 60px; }
     font-size: 35px;
     font-family: "Raleway";
     font-weight: 100;
-    /* Shadows are visible under slightly transparent text color */
+    color: rgb(171, 171, 171);
     color: rgba(171, 171, 171, 0.8);
-    text-shadow: 1px 4px 6px #fff, 0 0 0 #000, 1px 4px 6px #fff;
 }
 
 .panel-left {
@@ -50,8 +49,8 @@ body { margin-top: 60px; }
     padding: 5px 10px;
 }
 
-.contact-detail-panel { font-size: 25px; }
 .contact-detail-panel.contact-no-contact {
+    font-size: 25px;
     color: #C2C2C2;
     text-align: center;
 }

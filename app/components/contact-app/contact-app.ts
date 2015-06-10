@@ -3,8 +3,8 @@ import {RouteConfig, RouterLink, RouterOutlet, routerInjectables} from 'angular2
 
 import {ContactList} from './contact-list';
 import {ContactDetails} from './contact-details';
-import {ContactSearch} from './contact-search';
 import {ContactForm} from './contact-form';
+import {Search} from './search';
 
 import {contactStore, ContactStore} from '../../services/contacts-store';
 
@@ -30,7 +30,7 @@ import {contactStore, ContactStore} from '../../services/contacts-store';
 ])
 @View({
     templateUrl: './components/contact-app/contact-app.html?v=<%= VERSION %>',
-    directives: [RouterOutlet, ContactList, ContactDetails, ContactSearch]
+    directives: [RouterOutlet, ContactList, ContactDetails, Search]
 })
 export class ContactApp {
     contacts:Array<any>;
