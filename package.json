@@ -1,12 +1,19 @@
 {
-  "name": "angular2-seed",
+  "name": "angular2-demo-app",
   "version": "0.0.0",
-  "description": "Seed for Angular 2 apps",
-  "repository": "https://github.com/mgechev/angular2-seed",
+  "description": "Simple Angular 2 demo application",
+  "repository": "https://github.com/ludohenin/angular2-demo-app",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Minko Gechev <mgechev>",
+  "keywords": [
+    "angular2",
+    "typescript",
+    "systemjs",
+    "demo",
+    "application"
+  ],
+  "author": "Ludovic Henin <ludohenin>",
   "license": "MIT",
   "devDependencies": {
     "connect": "^3.3.5",
