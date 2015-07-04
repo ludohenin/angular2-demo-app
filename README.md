@@ -1,4 +1,4 @@
-**Project moved** at [https://github.com/AngularShowcase/angular2-sample-app](https://github.com/AngularShowcase/angular2-sample-app)
+**Project moved** at [AngularShowcase/angular2-sample-app](https://github.com/AngularShowcase/angular2-sample-app)
 ===
 
 # angular2-demo-app
