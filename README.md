@@ -1,3 +1,6 @@
+**Project moved** at [https://github.com/AngularShowcase/angular2-sample-app](https://github.com/AngularShowcase/angular2-sample-app)
+===
+
 # angular2-demo-app
 
 This project is based on [angular2-seed](https://github.com/mgechev/angular2-seed)
